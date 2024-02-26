@@ -1,7 +1,6 @@
 fastapi[uvicorn]
 fastapi-restful
 uvicorn
-
 sentry-sdk[fastapi]
 pymongo
 typing_inspect
