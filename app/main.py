@@ -31,7 +31,6 @@ from app.console import console
 from app.ENV import *
 from app.routers import transaction_v1
 
-# from apprise import Apprise
 from sharingiscaring.tooter import Tooter, TooterType, TooterChannel
 
 
