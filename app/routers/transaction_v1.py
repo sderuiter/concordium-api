@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Depends
+from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.responses import JSONResponse
 
 from sharingiscaring.tooter import Tooter, TooterType, TooterChannel  # noqa
@@ -30,4 +30,7 @@ async def get_transaction(
         result = CCD_BlockItemSummary(**result)
         return result.model_dump_json(exclude_none=True)
     else:
-        return {"request": tx_hash, "response": 404}
+        raise HTTPException(
+            status_code=404,
+            detail=f"Requested transaction hash ({tx_hash}) not found on {net}",
+        )
