@@ -30,6 +30,7 @@ from sharingiscaring.GRPCClient import GRPCClient
 from app.console import console
 from app.ENV import *
 from app.routers import transaction_v1
+from app.routers import account_v1
 
 from sharingiscaring.tooter import Tooter, TooterType, TooterChannel
 
@@ -87,8 +88,9 @@ async def lifespan(app: FastAPI):
     pass
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, separate_input_output_schemas=False)
 instrumentator = Instrumentator().instrument(app)
 
 # app.include_router(transaction_v1.router)
 app.include_router(transaction_v1.router, prefix="/v1")
+app.include_router(account_v1.router, prefix="/v1")
